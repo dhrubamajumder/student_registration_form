@@ -16,14 +16,18 @@
                         <p><strong>Published Year:</strong> {{ book.published_year }}</p>
                     
                         <a href="{% url 'update_book' book.id %}" class="btn btn-primary btn-sm">Edit</a>
-                        <a href="{% url 'delete_book' book.id %}" class="btn btn-danger btn-sm" onclick="return confirm('are you sure?')">Delete</a>
+                        <a href="{% url 'delete_book' book.id %}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure to Delete?')">Delete</a>
                     </div>
                 </div>
             </div>
+            
 
             
         {% empty %}
             <p class="text-center">No books available.</p>
         {% endfor %}
+        <div class="log text-center p-4">                
+        </h1><a href="{% url 'logout' %}" class="btn btn-danger" onclick="return confirm('Are you sure to Logout?')">Logout</a>
+    </div>
     </div>
 {% endblock %}

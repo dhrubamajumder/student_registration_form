@@ -45,7 +45,10 @@ def logout_view(request):
 
 def homepage(request):
     books = Book.objects.all()
+    # books = Book.objects.filter(user=request.user)
 
+    # user_id = request.user.id -------- 'user_id' : user_id
+    
     return render(request, 'book_list.html', {'books':books})
 
 # --------     Add to Book  --------------
@@ -53,12 +56,15 @@ def add_book(request):
     if request.method == 'POST':
         form = BookForms(request.POST)
         if form.is_valid():
-            form.save()
+            book = form.save(commit=False)  # Create object but don't save yet
+            book.user = request.user  # Assign logged-in user
+            book.save()  # Save to the database
             return redirect('homepage')
     else:
-        print("Get the form")
+        print("Get the form")  # This line is optional, can be removed
+    
     form = BookForms()
-    return render(request, 'add_book.html',{'form':form})
+    return render(request, 'add_book.html', {'form': form})
 
 
 # -----------  Update Book View  --------------

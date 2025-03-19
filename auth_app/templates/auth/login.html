@@ -6,20 +6,29 @@
     <div class="col-sm-6 formbg">
         <h2 class="text-center p-4">Login</h2><hr>
         <form method="POST" action="{% url 'login' %}">
-
             {% csrf_token %}
-
             <div class="form-group">
-                <label for="{{ form.username.id_for_lable }}">Username : </label>
-                <input type="text" name="{{ form.username.name }}" class="form-control" value="{{ form.username.value }}">
-                <span class="text-danger">{{ form.username.errors }} </span>
+                <label for="{{ form.username.id_for_label }}">Username: </label>
+                <input type="text" name="{{ form.username.name }}" class="form-control border-redias-5px" value="{{ form.username.value }}">
+                <span class="text-danger">{{ form.username.errors }}</span>
             </div>
-
+            
             <div class="form-group">
-                <label for="{{ form.password.id_for_lable }}">Password : </label>
-                <input type="password" name="{{ form.password.name }}" class="form-control" value="{{ form.password.value }}">
-                <span class="text-danger">{{ form.password.errors }} </span>
+                <label for="{{ form.password.id_for_label }}">Password: </label>
+                <div style="position: relative;">
+                    <input type="password" id="password1" name="{{ form.password.name }}" class="form-control" value="{{ form.password.value }}">
+                    <i class="fa fa-eye toggle-icon" onclick="togglePassword('password1', 'toggleIcon1')" id="toggleIcon1" style="
+                        position: absolute;
+                        right: 10px;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        cursor: pointer;
+                        color: #888;
+                    "></i>
+                </div>
+                <span class="text-danger">{{ form.password1.errors }}</span>
             </div>
+            
 
 
             <button type="submit" class="btn btn-primary">Login</button>
